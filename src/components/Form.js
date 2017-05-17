@@ -1,7 +1,7 @@
 // @ts-check
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable';
-import { Combobox } from "./ListItem";
+import { Combobox } from "./Combobox";
 import { options, dataList } from "../data/data";
 
 // let list = ;

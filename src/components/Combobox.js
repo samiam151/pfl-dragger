@@ -51,7 +51,7 @@ export class Combobox extends Component {
                         }
                     </ul>
                 </div>
-                <button onClick={() => this.onShowHideClick()}>{this.state.show ? "Hide" : "Show"}</button>
+                <button onClick={() => this.onShowHideClick()}>v</button>
                 <button onClick={() => this.onResetClick()}>X</button>
                 <button onClick={() => this.onRemoveClick(this)}>Remove</button>
             </div>
