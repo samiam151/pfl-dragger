@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable';
 import { Combobox } from "./Combobox";
-// @ts-check
+
 import { options, dataList } from "../data/data";
 
 // let list = ;
@@ -30,7 +30,7 @@ export class Form extends Component {
             content={content || "-Unmapped-"} 
             index={this.nextID} 
             options={options} 
-            removeItem={this.removeItem} 
+            removeItem={this.removeItem}
         />;
     }
 
@@ -46,7 +46,7 @@ export class Form extends Component {
             prevState.items.push({
                 content: (
                     this.renderComboBox(null, this.nextID)
-                )
+                ),
             })
 
             return {

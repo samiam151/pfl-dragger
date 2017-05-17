@@ -9,7 +9,7 @@ export class Combobox extends Component {
         this.options = this.props.options;
         this.state = {
             show: false,
-            hardValue: null
+            currentValue: null
         }
     }
     
@@ -22,14 +22,14 @@ export class Combobox extends Component {
     onSelectItemClick(e) {
         let newValue = e.target.innerHTML;
         this.setState(prevState => ({
-            hardValue: newValue,
+            currentValue: newValue,
             show: !prevState.show
         }));
     }
 
     onResetClick() {
         this.setState(prevState => ({
-            hardValue: ""
+            currentValue: ""
         }));
     }
 
@@ -37,12 +37,16 @@ export class Combobox extends Component {
         this.props.removeItem(box)
     }
 
+    nameValidator(){
+        var value = this.state.currentValue;
+    }
+
     render() {
         return (
             <div className="dragger" id={this.index}>
                 <span className="dragger__title" data-index={this.index}>{this.index}.</span>
                 <div className="dragger__input--content">
-                    <input type="text" placeholder={this.content} value={this.state.hardValue || ""} />
+                    <input type="text" placeholder={this.content} value={this.state.currentValue || ""} onChange={this.nameValidator} />
                     <ul className="dragger__ul" data-show={this.state.show}>
                         { 
                             this.options.map((item, i) => {
@@ -52,7 +56,7 @@ export class Combobox extends Component {
                     </ul>
                 </div>
                 <button onClick={() => this.onShowHideClick()}>v</button>
-                <button onClick={() => this.onResetClick()}>X</button>
+                <button onClick={() => this.onResetClick()}>Reset</button>
                 <button onClick={() => this.onRemoveClick(this)}>Remove</button>
             </div>
         );

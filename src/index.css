@@ -7,6 +7,7 @@ body {
 .dragger {
   padding: 10px;
   width: 100%;
+  border: 3px dashed transparent;
 }
 
 .dragger__input--content {
@@ -15,7 +16,7 @@ body {
 }
 
 .draggable.dragged {
-  background-color: green;
+  border: 3px dashed #ddd;
 }
 
 ul.dragger__ul {
