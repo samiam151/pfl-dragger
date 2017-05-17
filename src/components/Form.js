@@ -13,11 +13,15 @@ export class Form extends Component {
             items: dataList.map((x, i) => {
                 return {
                     content: (
-                        <Combobox content={x} index={i} options={options} removeItem={this.removeItem} />
+                        this.renderComboBox(x, i)
                     )
                 }
             })
         };
+    }
+
+    renderComboBox(content="-Unmapped-", index=null) {
+        return <Combobox content={content || "-Unmapped-"} index={index} options={options} removeItem={this.removeItem} />;
     }
 
     onSort = function(sortedList){
@@ -30,11 +34,7 @@ export class Form extends Component {
         this.setState(function(prevState){
             prevState.items.push({
                 content: (
-                    <Combobox 
-                        content={"-Unmapped-"} 
-                        index={+prevState.items.length} 
-                        options={options}
-                        removeItem={this.removeItem} />
+                    this.renderComboBox(null, +prevState.items.length)
                 )
             })
 

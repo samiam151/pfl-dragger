@@ -10,6 +10,7 @@ export var options = [
 ];
 
 export var dataList = [
+    "Associated Items",
     "SKU",
     "Whip It",
     "UPC",
