@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import DragSortableList from 'react-drag-sortable';
 import { Combobox } from "./components/ListItem";
+import { Form } from "./components/Form";
 import { options, dataList } from "./data/data";
 
 let list = dataList.map((x, i) => {
@@ -14,13 +14,16 @@ let list = dataList.map((x, i) => {
     }
 });
 
-class App extends Component {
-  onSort = function(sortedList){}
+function addItem(){
+    list.push({
+        content: (<Combobox content={""} index={++list.length} options={options} />)
+    });
+}
 
+class App extends Component {
   render() {
-    console.log(list);
     return (
-       <DragSortableList items={list} onSort={this.onSort} />
+        <Form items={list} addItem={addItem}/>
     );
   }
 }

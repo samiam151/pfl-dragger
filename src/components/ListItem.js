@@ -40,9 +40,11 @@ export class Combobox extends Component {
                 <div className="dragger__input--content">
                     <input type="text" placeholder={this.content} value={this.state.hardValue || ""} />
                     <ul className="dragger__ul" data-show={this.state.show}>
-                        { this.options.map((item, i) => {
-                            return <li key={i} onClick={(e) => this.onSelectItemClick(e)}>{ item }</li>
-                        }) }
+                        { 
+                            this.options.map((item, i) => {
+                                return <li key={i} onClick={(e) => this.onSelectItemClick(e)}>{ item }</li>
+                            }) 
+                        }
                     </ul>
                 </div>
                 <button onClick={() => this.onShowHideClick()}>{this.state.show ? "Hide" : "Show"}</button>
