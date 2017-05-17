@@ -33,6 +33,10 @@ export class Combobox extends Component {
         }));
     }
 
+    onRemoveClick(box) {
+        this.props.removeItem(box)
+    }
+
     render() {
         return (
             <div className="dragger" id={this.index}>
@@ -49,6 +53,7 @@ export class Combobox extends Component {
                 </div>
                 <button onClick={() => this.onShowHideClick()}>{this.state.show ? "Hide" : "Show"}</button>
                 <button onClick={() => this.onResetClick()}>X</button>
+                <button onClick={() => this.onRemoveClick(this)}>Remove</button>
             </div>
         );
     }
