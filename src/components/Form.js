@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable';
 import { Combobox } from "./Combobox";
+// @ts-check
 import { options, dataList } from "../data/data";
 
 // let list = ;
@@ -9,20 +10,30 @@ import { options, dataList } from "../data/data";
 export class Form extends Component {
     constructor(props) {
         super(props);
+        this.nextID = 0;
         this.state = {
             items: dataList.map((x, i) => {
                 return {
                     content: (
-                        this.renderComboBox(x, i)
+                        this.renderComboBox(x, this.nextID)
                     )
                 }
             })
         };
     }
 
-    renderComboBox(content="-Unmapped-", index=null) {
-        return <Combobox content={content || "-Unmapped-"} index={index} options={options} removeItem={this.removeItem} />;
+    // This returns a Combobox object
+    // This function is the only way to create a Combobox
+    renderComboBox(content, index=null) {
+        ++this.nextID;
+        return <Combobox 
+            content={content || "-Unmapped-"} 
+            index={this.nextID} 
+            options={options} 
+            removeItem={this.removeItem} 
+        />;
     }
+
 
     onSort = function(sortedList){
         this.setState(() => ({
@@ -34,7 +45,7 @@ export class Form extends Component {
         this.setState(function(prevState){
             prevState.items.push({
                 content: (
-                    this.renderComboBox(null, +prevState.items.length)
+                    this.renderComboBox(null, this.nextID)
                 )
             })
 
@@ -47,9 +58,7 @@ export class Form extends Component {
     removeItem = (box) => {
         this.setState(function(prevState){
             let newItems = prevState.items.filter(item => {
-                // console.log(item);
-                // console.log(box);
-                return item.content.props.content !== box.content;
+                return item.content.props.index !== box.index;
             });
             return {
                 items: newItems
@@ -60,7 +69,7 @@ export class Form extends Component {
     render() {
         return (
             <div>
-                <DragSortableList items={this.state.items} onSort={(li) => this.onSort(li)} />
+                <DragSortableList items={this.state.items} onSort={(sortedList) => this.onSort(sortedList)} />
                 <button onClick={() => this.onAddItemClick()}>Add Item</button>
             </div>
         );

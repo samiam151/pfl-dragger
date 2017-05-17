@@ -40,7 +40,7 @@ export class Combobox extends Component {
     render() {
         return (
             <div className="dragger" id={this.index}>
-                <span className="dragger__title" data-index={this.index}>{this.index + 1}.</span>
+                <span className="dragger__title" data-index={this.index}>{this.index}.</span>
                 <div className="dragger__input--content">
                     <input type="text" placeholder={this.content} value={this.state.hardValue || ""} />
                     <ul className="dragger__ul" data-show={this.state.show}>
