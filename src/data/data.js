@@ -1,19 +1,9 @@
-// @ts-check
-export var options = [
-    "- Assign manual value -",
-    "Associated Items",
-    "Name",
-    "Published",
-    "SKU",
-    "UPC",
-    "Whip it"
-];
+// @ts-nocheck
 
-export var dataList = [
-    "Associated Items",
-    "SKU",
-    "Whip It",
-    "UPC",
-    "Name",
-    "Published"
-];
+const ExportViewMap = window.ExportReactData;
+
+export var fields = ExportViewMap.fields
+
+export var options = ExportViewMap.options;
+
+export var templateID = ExportViewMap.templateID;

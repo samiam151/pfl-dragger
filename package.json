@@ -9,6 +9,7 @@
     "react-drag-sortable": "^1.0.1"
   },
   "devDependencies": {
+    "axios": "^0.16.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {

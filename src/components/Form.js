@@ -1,9 +1,9 @@
-// @ts-check
+// @ts-nocheck
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable';
 import { Combobox } from "./Combobox";
-
-import { options, dataList } from "../data/data";
+import  axios from "axios";
+import { fields, options, templateID } from "../data/data";
 
 // let list = ;
 
@@ -12,10 +12,10 @@ export class Form extends Component {
         super(props);
         this.nextID = 0;
         this.state = {
-            items: dataList.map((x, i) => {
+            items: fields.map((field, i) => {
                 return {
                     content: (
-                        this.renderComboBox(x, this.nextID)
+                        this.renderComboBox(field, this.nextID)
                     )
                 }
             })
@@ -24,10 +24,10 @@ export class Form extends Component {
 
     // This returns a Combobox object
     // This function is the only way to create a Combobox
-    renderComboBox(content, index=null) {
+    renderComboBox(field, index=null) {
         ++this.nextID;
         return <Combobox 
-            content={content || "-Unmapped-"} 
+            content={field} 
             index={this.nextID} 
             options={options} 
             removeItem={this.removeItem}
@@ -41,17 +41,28 @@ export class Form extends Component {
         }));
     }
 
-    onAddItemClick = function(){
-        this.setState(function(prevState){
-            prevState.items.push({
-                content: (
-                    this.renderComboBox(null, this.nextID)
-                ),
-            })
+    onAddItemClick = function(e){
+        e.preventDefault();
 
-            return {
-                items: prevState.items
-            }
+        axios.post("/Export/AddCustomExportFieldAjax", {
+            templateID: templateID,
+            numFields: this.nextID
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .then(res => {
+            this.setState(function(prevState){
+                prevState.items.push({
+                    content: (
+                        this.renderComboBox(res.data, this.nextID)
+                    ),
+                })
+
+                return {
+                    items: prevState.items
+                }
+            });
         });
     }
 
@@ -68,9 +79,10 @@ export class Form extends Component {
 
     render() {
         return (
-            <div>
+            <div className="exportTable--react">
                 <DragSortableList items={this.state.items} onSort={(sortedList) => this.onSort(sortedList)} />
-                <button onClick={() => this.onAddItemClick()}>Add Item</button>
+                <a className="clear-button" onClick={(e) => this.onAddItemClick(e)}>Add Field</a>
+                <a className="clear-button" data-toggle="modal" data-target="#manyFieldsModal">Add Multiple Fields</a>
             </div>
         );
     }
