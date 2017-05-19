@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -27,5 +28,19 @@
       To begin the development, run `npm start`.
       To create a production bundle, use `npm run build`.
     -->
+
+    <script>
+      var ExportReactData = {
+          fields: [{"AccountID":3,"TemplateID":96,"MapID":1297,"ChannelID":null,"SourceFieldName":"Active","TargetFieldName":"Pub","IsSystem":false,"SystemValue":null,"DisplayOrder":1,"IsDeleted":false,"IsExtended":false},{"AccountID":3,"TemplateID":96,"MapID":1298,"ChannelID":null,"SourceFieldName":"Product_SKU","TargetFieldName":"SKU","IsSystem":false,"SystemValue":null,"DisplayOrder":2,"IsDeleted":false,"IsExtended":false},{"AccountID":3,"TemplateID":96,"MapID":1299,"ChannelID":null,"SourceFieldName":"CustomTextField001","TargetFieldName":"Whip","IsSystem":false,"SystemValue":null,"DisplayOrder":3,"IsDeleted":false,"IsExtended":false},{"AccountID":3,"TemplateID":96,"MapID":1300,"ChannelID":null,"SourceFieldName":"Product_Name","TargetFieldName":"Name","IsSystem":false,"SystemValue":null,"DisplayOrder":4,"IsDeleted":false,"IsExtended":false},{"AccountID":3,"TemplateID":96,"MapID":1351,"ChannelID":null,"SourceFieldName":"UPC","TargetFieldName":"UPC","IsSystem":false,"SystemValue":null,"DisplayOrder":5,"IsDeleted":false,"IsExtended":false}],
+          templateID: 96,
+          options: []
+      };
+      ExportReactData.options.push("SKUGroup");
+      ExportReactData.options.push("Product_Name");
+      ExportReactData.options.push("Active");
+      ExportReactData.options.push("Product_SKU");
+      ExportReactData.options.push("UPC");
+      ExportReactData.options.push("CustomTextField001");
+    </script>
   </body>
 </html>

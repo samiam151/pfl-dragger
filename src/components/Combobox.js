@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { Component } from 'react';
-import {fields, options} from "../data/data";
+import { fields, options } from "../data/data";
 
 
 export class Combobox extends Component {
@@ -14,7 +14,7 @@ export class Combobox extends Component {
         this.state = {
             show: false,
         } 
-           
+
         if (this.content.isSystem){
             this.state['currentValue'] = this.content.SystemValue;
         } else {
@@ -69,7 +69,7 @@ export class Combobox extends Component {
                     <i className="fa fa-ellipsis-v"></i>
                     
                     <div className="dragger__dropdown">
-                        <input className="input" type="text" placeholder={this.content.TargetFieldName} value={this.state.currentValue || ""} onChange={this.nameValidator} />
+                        <input className="input" type="text" placeholder={this.content.TargetFieldName} value={this.state.currentValue || ""} onChange={(e) => this.nameValidator(e)} />
                         <ul className="dragger__ul" data-show={this.state.show}>
                             { 
                                 options.map((item, i) => {
