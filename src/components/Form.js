@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable';
 import { Combobox } from "./Combobox";
-import { BsModal } from "./BsModal";
 import { Modal, Popover, OverlayTrigger } from "react-bootstrap";
 import  axios from "axios";
 import { fields, options, templateID } from "../data/data";
@@ -101,6 +100,11 @@ export class Form extends Component {
                 this.addNewField(field);
             });
             this.closeModal();
+            this.setState(function(prevState){
+                return {
+                    addMultipleValue: ""
+                }
+            });
         });
     }
 
@@ -128,6 +132,7 @@ export class Form extends Component {
         return (
             <div className="exportTable--react">
                 <DragSortableList items={this.state.items} onSort={(sortedList) => this.onSort(sortedList)} />
+                
                 <a className="clear-button" onClick={(e) => this.onAddItemClick(e)}>Add Field</a>
                 <a className="clear-button" onClick={() => this.openModal()}>Add Multiple Fields</a>
 

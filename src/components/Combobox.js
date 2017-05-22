@@ -12,7 +12,8 @@ export class Combobox extends Component {
         this.options = this.props.options;
 
         this.state = {
-            show: false,
+            show: false
+            // oneInputValue: ""
         } 
 
         if (this.content.isSystem){
@@ -50,8 +51,13 @@ export class Combobox extends Component {
         this.props.removeItem(box)
     }
 
-    nameValidator(){
-        var value = this.state.currentValue;
+    nameValidator(e){
+        let val = e.target.value;
+        var value = val;
+        this.setState({
+            currentValue: val
+        });
+        console.log(this.state.currentValue);
     }
 
     render() {
@@ -69,7 +75,7 @@ export class Combobox extends Component {
                     <i className="fa fa-ellipsis-v"></i>
                     
                     <div className="dragger__dropdown">
-                        <input className="input" type="text" placeholder={this.content.TargetFieldName} value={this.state.currentValue || ""} onChange={(e) => this.nameValidator(e)} />
+                        <input className="input" type="text" placeholder={this.content.TargetFieldName} defaultValue="tester test" value={this.state.currentValue} onChange={(e) => this.nameValidator(e)} />
                         <ul className="dragger__ul" data-show={this.state.show}>
                             { 
                                 options.map((item, i) => {
